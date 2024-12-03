@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nhận dữ liệu từ MySQL bằng JavaScript</title>
+</head>
+<body>
+
+<div id="dataContainer"></div>
+
+<script>
+    // Sử dụng fetch để lấy dữ liệu từ PHP
+    fetch('./ConvenienceStore/storelocation.php')
+        .then(response => response.json()) // Chuyển đổi phản hồi sang JSON
+        .then(data => {
+            // Xử lý dữ liệu
+            console.log(data); // Kiểm tra dữ liệu trên console
+            let container = document.getElementById('dataContainer');
+            data.forEach(item => {
+                // Ví dụ hiển thị từng mục trong container
+                let div = document.createElement('div');
+                div.textContent = `ID: ${item.id}, Name: ${item.name}`;
+                container.appendChild(div);
+            });
+        })
+        .catch(error => console.error('Có lỗi:', error));
+</script>
+
+</body>
+</html>
